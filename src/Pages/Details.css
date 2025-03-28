@@ -1,6 +1,6 @@
 /* Navigation */
 .nav {
-    background-color:#7b6060;
+    background-color: #7b6060;
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
     border-radius: 10px;
 }
@@ -37,7 +37,7 @@
     border: 1px solid var(--border-color);
     border-radius: 0.5rem;
     outline: none;
-    
+
 }
 
 .nav-search input:focus {

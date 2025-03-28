@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState,useEffect } from "react";
 import {
   Search,
   ChevronDown,
@@ -8,7 +8,7 @@ import {
   UserX,
   Briefcase,
 } from "lucide-react";
-import profiles from "../mockData.json";
+import profiles from '../mockData.json'
 import "./Details.css";
 import { useNavigate } from "react-router-dom";
 
@@ -42,7 +42,7 @@ function Details() {
       return 0;
     });
 
-  const totalPages = Math.ceil(filteredProfiles.length / itemsPerPage);
+  const totalPages = Math.ceil( filteredProfiles.length / itemsPerPage );
   const currentProfiles = filteredProfiles.slice(
     (currentPage - 1) * itemsPerPage,
     currentPage * itemsPerPage
@@ -86,23 +86,23 @@ function Details() {
                   onClick={() => {
                     localStorage.removeItem("isAuthenticated");
                     localStorage.removeItem("currentUser");
-                    navigate("/");
+                    navigate('/');
                   }}
                 >
-                  <LogOut />
+                  <LogOut  />
                   Logout
                 </button>
                 <button
                   className="dropdown-item danger"
                   onClick={() => {
-                    const userId = localStorage.getItem("currentUser");
-                    if (userId) {
-                      localStorage.removeItem(userId); // Delete user data
-                    }
-                    localStorage.removeItem("isAuthenticated");
-                    localStorage.removeItem("currentUser");
-                    navigate("/"); // Redirect to home page
-                  }}
+                  const userId = localStorage.getItem("currentUser");
+                  if (userId) {
+                    localStorage.removeItem(userId); // Delete user data
+                  }
+                  localStorage.removeItem("isAuthenticated");
+                  localStorage.removeItem("currentUser");
+                  navigate("/"); // Redirect to home page
+                }}
                 >
                   <UserX className="" />
                   Delete Account

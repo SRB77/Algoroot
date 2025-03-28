@@ -1,8 +1,5 @@
-/* eslint-disable react-hooks/rules-of-hooks */
-/* eslint-disable no-unused-vars */
 import React from "react";
 import "./App.css";
-import { useState } from "react";
 import Signup from "./Pages/Signup";
 import Signin from "./Pages/Signin";
 import { useNavigate } from "react-router-dom";
