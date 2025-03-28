@@ -1,0 +1,56 @@
+/* Background Styling */
+body {
+  background-color: #ffe6f2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  font-family: 'Arial', sans-serif;
+}
+
+/* Welcome Card Styling */
+.welcome-card {
+  background: white;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  max-width: 400px;
+  width: 100%;
+}
+
+/* Heading Styling */
+.welcome-card h1 {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 20px;
+  font-weight: bolder;
+}
+
+/* Button Styling */
+.welcome-card button {
+  width: 100%;
+  padding: 12px;
+  margin: 8px 0;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.welcome-card button:first-child {
+  background-color: #271f23;
+  color: white;
+}
+
+.welcome-card button:last-child {
+  background-color: #333;
+  color: white;
+}
+
+/* Hover Effects */
+.welcome-card button:hover {
+  opacity: 0.8;
+}
