@@ -1,15 +1,9 @@
-/* Background Styling */
+
 body {
   background-color: #ffe6f2;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  margin: 0;
-  font-family: 'Arial', sans-serif;
 }
 
-/* Welcome Card Styling */
+Welcome Card Styling 
 .welcome-card {
   background: white;
   padding: 40px;
