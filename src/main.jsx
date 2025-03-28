@@ -7,6 +7,8 @@ import App from './App.jsx'
 import Signup from './Pages/Signup.jsx'
 import Signin from './Pages/Signin.jsx'
 import Details from './Pages/Details.jsx'
+import { ToastContainer } from 'react-toastify'
+import "react-toastify/dist/ReactToastify.css";
 
 const router = createBrowserRouter([
   {
@@ -26,8 +28,9 @@ const router = createBrowserRouter([
     element:<Details/>
   }
 ]);
-createRoot(document.getElementById('root')).render(
+createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <RouterProvider router={router}/>
-  </StrictMode>,
-)
+    <RouterProvider router={router} />
+    <ToastContainer position="top-right" autoClose={1000} />
+  </StrictMode>
+);

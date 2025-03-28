@@ -1,13 +1,15 @@
-/* eslint-disable no-unused-vars */
 import React from "react";
 import "./Signup.css";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import bcrypt from "bcryptjs";
+import { toast } from "react-toastify";
+
+
 function Signup() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmpassword, setConfirmpassword] = useState("");
-  const [error, setError] = useState("");
 
   const navigate = useNavigate();
   //Functionalities :
@@ -23,42 +25,51 @@ function Signup() {
       /[@$!%*?&]/.test(password)
     );
   };
-  const handleSignup = () => {
-    setError(""); // Clear previous errors
 
-    //Email validation
-    if (!isValidEmail(email)) {
-      setError("Invalid email format");
-      console.log(error);
-      return;
-    }
+const handleSignup = async () => {
 
-    //Password match check
-    if (password !== confirmpassword) {
-      setError("Passwords do not match");
-      console.log(error);
-      return;
-    }
+  // Email validation
+  if (!isValidEmail(email)) {
+    toast.error("Invalid email format");
+    return;
+  }
 
-    //Strong password check
-    if (!isStrongPassword(password)) {
-      setError(
-        "Password must be at least 8 characters long, include an uppercase letter, a lowercase letter, a number, and a special character."
-      );
-      console.log(error);
-      return;
-    }
+  // Password match check
+  if (password !== confirmpassword) {
+    toast.error("Passwords do not match");
+    return;
+  }
 
-    // Store user data in localStorage
-    const userData = { email, password };
-    localStorage.setItem(Date.now(), JSON.stringify(userData));
-    // clear value from input Field
-    setEmail("");
-    setPassword("");
-    setConfirmpassword("");
-    navigate("/Details");
-  };
+  // Strong password check
+  if (!isStrongPassword(password)) {
+    toast.error(
+      "Password must be at least 8 characters long, include an uppercase letter, a lowercase letter, a number, and a special character."
+    );
+    return;
+  }
 
+  // Generate a unique user ID
+  const userId = Date.now().toString();
+
+  // **Hash Password Before Storing**
+  const hashedPassword = await bcrypt.hash(password, 10); // 10 is salt rounds
+
+  // Store user data in localStorage
+  const userData = { email, password: hashedPassword };
+  localStorage.setItem(userId, JSON.stringify(userData));
+
+  // Set authentication session
+  localStorage.setItem("isAuthenticated", "true");
+  localStorage.setItem("currentUser", userId);
+
+  // Clear input fields
+  setEmail("");
+  setPassword("");
+  setConfirmpassword("");
+  
+  // Navigate to Details Page
+  navigate("/Details");
+};
   return (
     <>
       <div className="main">

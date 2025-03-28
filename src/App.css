@@ -1,10 +1,21 @@
-
-body {
-  background-color: #ffe6f2;
+/* Apply styles only to the App component */
+body{
+  background-color: #887a81;
+}
+.app-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
 }
 
-Welcome Card Styling 
+
 .welcome-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   background: white;
   padding: 40px;
   border-radius: 12px;
@@ -14,7 +25,6 @@ Welcome Card Styling
   width: 100%;
 }
 
-/* Heading Styling */
 .welcome-card h1 {
   font-size: 24px;
   color: #333;
@@ -22,7 +32,7 @@ Welcome Card Styling
   font-weight: bolder;
 }
 
-/* Button Styling */
+
 .welcome-card button {
   width: 100%;
   padding: 12px;

@@ -55,3 +55,8 @@
     background-color: #21595e;
     transform: scale(1.05);
 } 
+.para{
+    cursor: pointer;
+    font-size: medium;
+    font-weight: bold;
+}

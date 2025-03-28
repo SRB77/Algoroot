@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Search,
   ChevronDown,
@@ -8,13 +8,18 @@ import {
   UserX,
   Briefcase,
 } from "lucide-react";
-import profiles from '../mockData.json'
+import profiles from "../mockData.json";
 import "./Details.css";
-
-// Updated mock data
-
+import { useNavigate } from "react-router-dom";
 
 function Details() {
+  const navigate = useNavigate();
+  useEffect(() => {
+    const isAuthenticated = localStorage.getItem("isAuthenticated");
+    if (isAuthenticated !== "true") {
+      navigate("/"); // Redirect to home if not signed in
+    }
+  }, []);
   const [currentPage, setCurrentPage] = useState(1);
   const [searchTerm, setSearchTerm] = useState("");
   const [sortOrder, setSortOrder] = useState("");
@@ -49,7 +54,7 @@ function Details() {
       <nav className="nav">
         <div className="container nav-container">
           <div className="nav-brand">
-            <Briefcase className="h-8 w-8" color="#4f46e5" />
+            <Briefcase className="" color="#4f46e5" />
             <span>Algoroot</span>
           </div>
 
@@ -71,23 +76,35 @@ function Details() {
               <div className="profile-avatar">
                 <span>JD</span>
               </div>
-              <ChevronDown className="h-4 w-4" />
+              <ChevronDown className="" />
             </button>
 
             {showDropdown && (
               <div className="dropdown-menu">
                 <button
                   className="dropdown-item"
-                  onClick={() => console.log("Logout")}
+                  onClick={() => {
+                    localStorage.removeItem("isAuthenticated");
+                    localStorage.removeItem("currentUser");
+                    navigate("/");
+                  }}
                 >
-                  <LogOut className="h-4 w-4" />
+                  <LogOut />
                   Logout
                 </button>
                 <button
                   className="dropdown-item danger"
-                  onClick={() => console.log("Delete Account")}
+                  onClick={() => {
+                    const userId = localStorage.getItem("currentUser");
+                    if (userId) {
+                      localStorage.removeItem(userId); // Delete user data
+                    }
+                    localStorage.removeItem("isAuthenticated");
+                    localStorage.removeItem("currentUser");
+                    navigate("/"); // Redirect to home page
+                  }}
                 >
-                  <UserX className="h-4 w-4" />
+                  <UserX className="" />
                   Delete Account
                 </button>
               </div>
@@ -135,7 +152,7 @@ function Details() {
           </div>
 
           {/* Main Content */}
-          <div className="flex-1">
+          <div className="card-container">
             <div className="profile-grid">
               {currentProfiles.map((profile) => (
                 <div key={profile.id} className="profile-card">
@@ -168,7 +185,7 @@ function Details() {
                 disabled={currentPage === 1}
                 className="pagination-button"
               >
-                <ChevronLeft className="h-5 w-5" />
+                <ChevronLeft className="" />
               </button>
 
               <span className="pagination-text">
@@ -182,7 +199,7 @@ function Details() {
                 disabled={currentPage === totalPages}
                 className="pagination-button"
               >
-                <ChevronRight className="h-5 w-5" />
+                <ChevronRight className="" />
               </button>
             </div>
           </div>
